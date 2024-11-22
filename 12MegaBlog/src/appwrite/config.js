@@ -1,10 +1,11 @@
-import conf from "../conf/conf";
+import conf from "../conf/conf.js";
 import {Client,ID,Databases,Storage,Query} from "appwrite";
 
 export class Service{
     client=new Client();
     databases;
     bucket;
+
     constructor(){
         this.client
             .setEndpoint(conf.appwriteUrl)
@@ -26,11 +27,9 @@ export class Service{
                     userId,
                 }
             )
-            return true;
         } catch (error) {
             console.log("Appwrite service :: createPost:: error",error)
         }
-
     }
     async updatePost(slug,{title,content,featuredImage,status}){
         try {
@@ -44,11 +43,9 @@ export class Service{
                     featuredImage,
                     status,
                 }
-            ) 
-            return true;           
+            )          
         } catch (error) {
             console.log("Appwrite service :: UpdatePost :: error",error)
-            return false
         }
     }
     async DeletePost(slug){
@@ -71,7 +68,6 @@ export class Service{
                 conf.appwriteCollectionId,
                 slug
             )
-            return true;
         } catch (error) {
             console.log("Appwrite :: getPost:: error",error)
             return false
@@ -83,8 +79,7 @@ export class Service{
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 queries,
-            )        
-            return true;    
+            )           
         } catch (error) {
             console.log("AppWrite services :: getposts :: error",error);
             return false
@@ -100,7 +95,6 @@ export class Service{
                 ID.unique(),
                 file
             )
-            return true;
         } catch (error) {
             console.log("Appwrite service:: uploadFile::error",error)
             return false
@@ -108,7 +102,7 @@ export class Service{
     }
     async deletefile(fileId){
         try {
-            return await this.bucket.deleteFile(
+            await this.bucket.deleteFile(
                 conf.appwriteBucketId,
                 fileId
             )
