@@ -1,4 +1,4 @@
-import conf from "../conf/conf.js";
+import conf from "../conf/conf";
 import {Client,Account,ID} from "appwrite";
 
 export class AuthService{
@@ -41,7 +41,7 @@ export class AuthService{
         try{
             return await this.account.get();
         }catch(error){
-            console.log("Appwrite service :: getCurrentUser :: error",error);
+            console.log("Appwrite service :: getCurrentUser :: error", error);
         }
         return null;
     }
@@ -55,6 +55,6 @@ export class AuthService{
     }
 }
 
-const authservice=new AuthService();
+const authService=new AuthService();
 
-export default authservice
+export default authService
