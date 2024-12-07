@@ -1,5 +1,5 @@
 import conf from "../conf/conf.js";
-import {Client,ID,Databases,Storage,Query} from "appwrite";
+import {Client, ID, Databases, Storage, Query} from "appwrite";
 
 export class Service{
     client=new Client();
@@ -19,7 +19,8 @@ export class Service{
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                slug,{
+                slug,
+                {
                     title,
                     content,
                     featuredImage,
@@ -28,10 +29,10 @@ export class Service{
                 }
             )
         } catch (error) {
-            console.log("Appwrite service :: createPost:: error",error)
+            console.log("Appwrite service :: createPost :: error", error);
         }
     }
-    async updatePost(slug,{title,content,featuredImage,status}){
+    async updatePost(slug, {title, content, featuredImage, status}){
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
